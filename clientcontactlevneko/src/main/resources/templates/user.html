@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+<h1>So here is : </h1>
+<h2  th:text="'User : name - ' + ${user.name} + ' ; surname - ' + ${user.surname} + ' ; age - ' + ${user.age}"></h2>
+<a th:href="'/user/'+${user.id}+'/delete'" >Delete user</a>
+<p>If you want to update info about your user (required)</p>
+<form th:action="'/user/'+${user.id}+'/update'" method="post">
+    <p>Please enter your name: </p><input type="text" name="name1" required><br>
+    <p>Please enter your surname: </p><input type="text" name="surname1" required><br>
+    <p>Please enter your age: </p><input type="text" name="age1" required><br>
+    <input type="submit">
+</form>
+<h2>Please enter info if you want to add contact</h2>
+<form th:action="'/user/'+${user.id}+'/contact/create'" method="post">
+    <p>Please enter name: </p><input type="text" name="nameCon" required><br>
+    <p>Please enter surname: </p><input type="text" name="surnameCon" required><br>
+    <p>Please enter number: </p><input type="text" name="numberCon" required><br>
+    <input type="submit">
+</form>
+<h1>So here is a list of contacts:</h1>
+<ul th:each="contact : ${contacts}">
+    <li>
+        <a th:href="'/user/'+${user.id}+'/contact/'+${contact.id}" th:text="'id - '+${contact.id}+' Name - ' + ${contact.name} + ' Surname - ' + ${contact.surname} + ' Number - ' + ${contact.number}"></a>
+    </li>
+</ul>
+</body>
+</html>

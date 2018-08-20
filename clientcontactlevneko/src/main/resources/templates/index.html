@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Main</title>
+</head>
+<body>
+<h2>Form to create user: </h2>
+<form action="/user/create" method="post">
+    <p>Please enter your name: </p><input type="text" name="name"><br>
+    <p>Please enter your surname: </p><input type="text" name="surname"><br>
+    <p>Please enter your age: </p><input type="text" name="age"><br>
+    <input type="submit">
+</form>
+
+<h1>So here is a list of users:</h1>
+<ul th:each="user : ${userList}">
+    <li>
+        <a th:href="'/user/'+${user.id}" th:text="'ID - '+${user.id}+' Name - ' + ${user.name} + ' Surname - ' + ${user.surname} + ' Age - ' + ${user.age}"></a>
+    </li>
+</ul>
+</body>
+</html>
